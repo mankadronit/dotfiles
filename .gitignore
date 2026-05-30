@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Backups created by install.sh
+*.bak
+*.bak.*
+
+# Neovim: only config is tracked. Plugin code/data lives in ~/.local/share and
+# ~/.local/state, never here. lazy-lock.json IS tracked (pins plugin versions).
+config/nvim/.omc/
+config/nvim/spell/
+
+# Fish: generated/volatile state (we track only config.fish, fish_plugins, and
+# the hand-authored conf.d/functions files — fisher reinstalls the rest).
+config/fish/fish_variables
+
+# lf: runtime
+config/lf/files

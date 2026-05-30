@@ -1,0 +1,48 @@
+# ~/.config/lf/lfrc — macOS-adapted (reference's lfrc targets Linux openers).
+set shell sh
+set shellopts '-eu'
+set ifs "\n"
+set scrolloff 10
+set icons true
+set period 1
+set hidden true
+
+# Preview with bat (syntax highlighting) for text; fall back to file info.
+set previewer ~/.config/lf/preview
+
+# Open files: text in $EDITOR, everything else via macOS `open`.
+cmd open ${{
+    case $(file --mime-type -Lb "$f") in
+        text/*|application/json|application/javascript) $EDITOR "$f";;
+        *) open "$f";;
+    esac
+}}
+
+# Create dir / file
+cmd mkdir %{{ printf "Directory name: "; read ans; mkdir -p "$ans"; }}
+cmd mkfile %{{ printf "File name: "; read ans; touch "$ans"; }}
+
+# Move to macOS Trash (uses Finder; no extra deps).
+cmd trash %{{ for x in $fx; do osascript -e "tell application \"Finder\" to delete POSIX file \"$PWD/$x\""; done; }}
+
+# Bulk extract common archives.
+cmd extract ${{
+    case "$f" in
+        *.zip) unzip "$f";;
+        *.tar.gz|*.tgz) tar xzf "$f";;
+        *.tar.bz2) tar xjf "$f";;
+        *.tar.xz) tar xJf "$f";;
+        *.tar) tar xf "$f";;
+        *) echo "Unsupported archive: $f";;
+    esac
+}}
+
+# Keybindings
+map D trash
+map A mkdir
+map T mkfile
+map E extract
+map gh cd ~
+map gc cd ~/.config
+map gd cd ~/Downloads
+map . set hidden!

@@ -1,0 +1,14 @@
+#!/bin/sh
+# lf previewer: syntax-highlighted text via bat, basic info for binaries/images.
+case "$(file --mime-type -Lb "$1")" in
+    text/* | application/json | application/javascript)
+        bat --color=always --style=plain --paging=never --line-range=:300 "$1" 2>/dev/null || cat "$1"
+        ;;
+    image/*)
+        printf "image: %s\n" "$1"
+        file -b "$1"
+        ;;
+    *)
+        file -b "$1"
+        ;;
+esac
