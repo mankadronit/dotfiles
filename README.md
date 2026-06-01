@@ -4,12 +4,6 @@ Personal macOS development environment — **fish**, **Neovim**, **tmux**, **Gho
 **starship**. Managed as a symlink repo: the real files live here and are
 symlinked into `~/.config` (and `~`) by [`install.sh`](install.sh).
 
-Heavily inspired by [radleylewis/dotfiles](https://github.com/radleylewis/dotfiles),
-[radleylewis/nvim](https://github.com/radleylewis/nvim), and
-[radleylewis/zsh](https://github.com/radleylewis/zsh) — adapted for macOS and
-fish (instead of his Linux/Wayland + zsh setup), and kept on a modern 2026
-Neovim stack (blink.cmp, snacks.nvim, native LSP).
-
 ## Layout
 
 ```
@@ -90,7 +84,3 @@ Modern stack: blink.cmp, snacks.nvim (picker + explorer + lazygit), native
 Abbreviations (git/cargo), eza/bat/lazygit aliases, **vi key bindings**
 (`conf.d/vi-mode.fish`), zoxide, starship, fzf.fish, autopair. `lf` is wrapped
 so it `cd`s to the directory you quit in.
-
-## Not included (Linux-only, intentionally skipped)
-qtile, kanshi, mako, rofi, swaylock/wf-recorder, alacritty, nmcli scripts — all
-from the reference repos but irrelevant on macOS.
