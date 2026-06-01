@@ -8,6 +8,11 @@ return {
   config = function()
     require("tokyonight").setup({
       style = "night", -- night | storm | moon | day
+      transparent = true, -- let terminal background show through
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     })
     vim.cmd.colorscheme("tokyonight")
   end,

@@ -11,12 +11,6 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("n", "<leader>w", "<cmd>write<CR>", { desc = "Write file" })
 map("n", "<leader>q", "<cmd>quit<CR>", { desc = "Quit window" })
 
--- Better window navigation: <Ctrl> + h/j/k/l
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
-
 -- Resize splits with arrows
 map("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Increase window height" })
 map("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Decrease window height" })
