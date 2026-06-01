@@ -34,7 +34,7 @@ files (autopair, fzf.fish, fisher itself) from `fish_plugins`.
 
 ```sh
 # 1. Clone
-git clone <this-repo-url> ~/dotfiles && cd ~/dotfiles
+git clone [https://github.com/mankadronit/dotfiles.git](https://github.com/mankadronit/dotfiles.git) ~/dotfiles && cd ~/dotfiles
 
 # 2. Install tools
 brew bundle               # reads ./Brewfile
