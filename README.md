@@ -1,8 +1,8 @@
 # dotfiles
 
 Personal macOS development environment — **fish**, **Neovim**, **tmux**, **Ghostty**,
-**starship**. Managed as a symlink repo: the real files live here and are
-symlinked into `~/.config` (and `~`) by [`install.sh`](install.sh).
+**starship**. [`install.sh`](install.sh) copies configs into `~/.config` (and `~`) —
+no symlinks, so the repo can be deleted after setup.
 
 ## Layout
 
@@ -18,7 +18,7 @@ config/
 home/
   .gitconfig
 Brewfile         every tool these dotfiles assume
-install.sh       symlinks everything into place (idempotent)
+install.sh       copies everything into place (idempotent)
 ```
 
 Only **hand-authored** fish files are tracked. Fisher reinstalls the plugin
@@ -33,7 +33,7 @@ git clone https://github.com/mankadronit/dotfiles.git ~/dotfiles && cd ~/dotfile
 # 2. Install tools
 brew bundle               # reads ./Brewfile
 
-# 3. Symlink the configs into place (backs up anything it would overwrite)
+# 3. Copy the configs into place (backs up anything it would overwrite)
 ./install.sh
 
 # 4. fish: make it the default shell + install plugins
@@ -49,15 +49,15 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 nvim --headless "+Lazy! sync" +qa
 ```
 
-`install.sh` is safe to re-run anytime (e.g. after `git pull`); it only creates
-or repoints symlinks and backs up real files to `*.bak.<timestamp>`.
+`install.sh` is safe to re-run anytime (e.g. after `git pull`); it copies
+updated files and backs up any changed destination to `*.bak.<timestamp>`.
 
 ## Day-to-day
 
-- **Edit a config** → edit it under `~/.config/...` as usual; it's a symlink, so
-  you're editing the file in this repo. `cd ~/dotfiles && git diff` to review.
-- **Add a new tracked file** → put it in the repo, add a `link` line to
-  `install.sh`, run `./install.sh`.
+- **Edit a config** → edit the file in the repo under `config/...`, then re-run
+  `./install.sh` to push the change to `~/.config/...`.
+- **Add a new tracked file** → put it in the repo, add an `install_file` or
+  `install_dir` call to `install.sh`, run `./install.sh`.
 
 ## Highlights
 

@@ -1,9 +1,9 @@
 # CLAUDE.md — guidance for AI agents working in this repo
 
-This is a **macOS** dotfiles repo (fish + Neovim + tmux + Ghostty + starship),
-managed as a **symlink repo**. The real files live here; `install.sh` symlinks
-them into `~/.config` and `~`. Editing `~/.config/nvim/...` edits this repo
-(it's a symlink) — there is no separate copy to keep in sync.
+This is a **macOS** dotfiles repo (fish + Neovim + tmux + Ghostty + starship).
+`install.sh` **copies** files into `~/.config` and `~` (no symlinks). The repo
+is the source of truth; after install the configs are independent copies. To
+propagate repo changes, re-run `./install.sh`.
 
 ## Golden rules
 
@@ -24,17 +24,17 @@ them into `~/.config` and `~`. Editing `~/.config/nvim/...` edits this repo
 
 ## Structure
 
-| Path | What | How it's linked |
+| Path | What | How it's installed |
 |------|------|-----------------|
-| `config/nvim/` | Neovim (lazy.nvim, specs in `lua/plugins/*.lua`) | whole dir |
-| `config/tmux/` | tmux.conf + `scripts/` popups | whole dir |
-| `config/ghostty/` | terminal config + themes | whole dir |
-| `config/lf/` | lf file manager (`lfrc`, `preview`) | whole dir |
-| `config/fish/` | only `config.fish`, `fish_plugins`, hand-authored `conf.d/*` + `functions/lf.fish` | per file |
-| `config/starship.toml`, `config/git/ignore`, `home/.gitconfig` | misc | per file |
+| `config/nvim/` | Neovim (lazy.nvim, specs in `lua/plugins/*.lua`) | whole dir (rsync) |
+| `config/tmux/` | tmux.conf + `scripts/` popups | whole dir (rsync) |
+| `config/ghostty/` | terminal config + themes | whole dir (rsync) |
+| `config/lf/` | lf file manager (`lfrc`, `preview`) | whole dir (rsync) |
+| `config/fish/` | only `config.fish`, `fish_plugins`, hand-authored `conf.d/*` + `functions/lf.fish` | per file (cp) |
+| `config/starship.toml`, `config/git/ignore`, `home/.gitconfig` | misc | per file (cp) |
 
-To track a **new** file: add it under the repo, add a matching `link` line in
-`install.sh`, and run `./install.sh`.
+To track a **new** file: add it under the repo, add a matching `install_file`
+or `install_dir` call in `install.sh`, and run `./install.sh`.
 
 ## Conventions
 
